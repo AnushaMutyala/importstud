@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+<h2>Import Excel Data</h2>
+<%= form_tag import_students_path, multipart: true do %>
+  <%= file_field_tag :file %>
+  <%= submit_tag "Import" %>
+<% end %>
+<p>
+<%= link_to 'Download excel', students_path(format: :xlsx) %>
+<%= link_to "CSV", students_path(format: "csv") %> 
+</p>
+
+<h1>Students Avg Marks</h1>
+<table border="1">
+<tr><th>Name</th><th>Roll No</th><th>Marks1</th><th>Marks2</th><th>Marks3</th><th>AVG</th></tr>
+<%@students.each do |t|%>
+  <tr>
+  <td><%=t.name%></td>
+  <td><%= t.roll_no%></td>
+  <td><%= t.marks1%></td>
+  <td><%= t.marks2%></td>
+  <td><%= t.marks3%></td>
+  <td><%=avg = (t.marks1 + t.marks2 + t.marks3)/3 %></td>
+  </tr>
+  <%end%>
+</table>

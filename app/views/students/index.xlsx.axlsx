@@ -1,0 +1,13 @@
+wb = xlsx_package.workbook
+	wb.styles do |style|
+	  project_heading = style.add_style(b: true, sz: 14)
+	  heading = style.add_style(b: true)
+		wb.add_worksheet(name: "Students") do |sheet|
+		  # Create the header row
+		  sheet.add_row ["student name", "roll_no","marks1","marks2","marks3","avg"]
+		  # Create entries for each item
+		  @students.each do |student|
+		    sheet.add_row [student.name, student.roll_no,student.marks1,student.marks2,student.marks3,student.avg]
+		end
+	end
+end
